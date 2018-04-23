@@ -23,6 +23,10 @@ function init(options) {
     return
   }
 
+  if (config.showInfo) {
+    config.nodeHeight = config.infoNodeHeight || defaultConfig.infoNodeHeight
+  }
+
   const {
     id,
     treeData,

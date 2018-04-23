@@ -45,7 +45,24 @@ function getPerson(id, { depth, department }) {
     avatar: faker.image.avatar(), // 'https://github.com/fouad.png',
     name: faker.name.firstName() + ' ' + faker.name.lastName(),
     title: depth > 0 ? faker.name.jobTitle() : 'CEO',
-    department: depth > 0 ? department || getDept() : ''
+    department: depth > 0 ? department || getDept() : '',
+    info: [
+      {
+        text: 'Merge the towns of Eagleton and Pawnee',
+        background: '#f4f8fa',
+        color: '#00b195'
+      },
+      {
+        text: 'Convert the Sullivan Street Pit into a new city park...',
+        background: '#f4f8fa',
+        color: '#00b195'
+      },
+      {
+        text: 'Grow the Cross Division team by 3 people',
+        background: '#f4f8fa',
+        color: '#00b195'
+      }
+    ]
   }
 }
 

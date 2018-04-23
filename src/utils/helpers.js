@@ -1,15 +1,17 @@
 module.exports = {
-  getTextForTitle,
+  getTextForReports,
   getTextForDepartment,
   getCursorForNode
 }
 
-function getTextForTitle(datum) {
+function getTextForReports(datum) {
   if (!datum.person || !datum.person.totalReports) {
     return ''
   }
 
-  const { person: { totalReports } } = datum
+  const {
+    person: { totalReports }
+  } = datum
   const pluralEnding = totalReports > 1 ? 's' : ''
 
   return `${totalReports} report${pluralEnding}`

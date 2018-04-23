@@ -4,6 +4,7 @@ const shouldResize = true
 // Nodes
 const nodeWidth = 240
 const nodeHeight = 120
+const infoNodeHeight = 320
 const nodeSpacing = 12
 const nodePaddingX = 16
 const nodePaddingY = 16
@@ -27,11 +28,22 @@ const nameColor = '#222d38'
 const titleColor = '#617080'
 const reportsColor = '#92A0AD'
 
+// Classes
+const PERSON_INFO_CLASS = 'org-chart-info'
+const PERSON_INFO_TEXT_CLASS = 'org-chart-info-text'
+const PERSON_NODE_CLASS = 'org-chart-node'
+const PERSON_LINK_CLASS = 'org-chart-person-link'
+const PERSON_NAME_CLASS = 'org-chart-person-name'
+const PERSON_TITLE_CLASS = 'org-chart-person-title'
+const PERSON_DEPARTMENT_CLASS = 'org-chart-person-dept'
+const PERSON_REPORTS_CLASS = 'org-chart-person-reports'
+
 const config = {
   margin,
   animationDuration,
   nodeWidth,
   nodeHeight,
+  infoNodeHeight,
   nodeSpacing,
   nodePaddingX,
   nodePaddingY,
@@ -44,7 +56,15 @@ const config = {
   nameColor,
   titleColor,
   reportsColor,
-  shouldResize
+  shouldResize,
+  PERSON_NODE_CLASS,
+  PERSON_INFO_CLASS,
+  PERSON_INFO_TEXT_CLASS,
+  PERSON_LINK_CLASS,
+  PERSON_NAME_CLASS,
+  PERSON_TITLE_CLASS,
+  PERSON_DEPARTMENT_CLASS,
+  PERSON_REPORTS_CLASS
 }
 
 module.exports = config

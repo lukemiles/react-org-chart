@@ -2,13 +2,7 @@ const { wrapText, helpers } = require('../utils')
 const renderLines = require('./render-lines')
 const onClick = require('./on-click')
 const iconLink = require('./components/icon-link')
-
-const CHART_NODE_CLASS = 'org-chart-node'
-const PERSON_LINK_CLASS = 'org-chart-person-link'
-const PERSON_NAME_CLASS = 'org-chart-person-name'
-const PERSON_TITLE_CLASS = 'org-chart-person-title'
-const PERSON_DEPARTMENT_CLASS = 'org-chart-person-dept'
-const PERSON_REPORTS_CLASS = 'org-chart-person-reports'
+const personInfo = require('./components/person-info')
 
 function render(config) {
   const {
@@ -30,7 +24,15 @@ function render(config) {
     lineDepthY,
     treeData,
     sourceNode,
-    onPersonLinkClick
+    onPersonLinkClick,
+    PERSON_NODE_CLASS,
+    PERSON_INFO_CLASS,
+    PERSON_INFO_TEXT_CLASS,
+    PERSON_LINK_CLASS,
+    PERSON_NAME_CLASS,
+    PERSON_TITLE_CLASS,
+    PERSON_DEPARTMENT_CLASS,
+    PERSON_REPORTS_CLASS
   } = config
 
   // Compute the new tree layout.
@@ -47,7 +49,7 @@ function render(config) {
 
   // Update the nodes
   const node = svg
-    .selectAll('g.' + CHART_NODE_CLASS)
+    .selectAll('g.' + PERSON_NODE_CLASS)
     .data(nodes.filter(d => d.id), d => d.id)
   const parentNode = sourceNode || treeData
 
@@ -55,7 +57,7 @@ function render(config) {
   const nodeEnter = node
     .enter()
     .insert('g')
-    .attr('class', CHART_NODE_CLASS)
+    .attr('class', PERSON_NODE_CLASS)
     .attr('transform', `translate(${parentNode.x0}, ${parentNode.y0})`)
     .on('click', onClick(config))
 
@@ -120,14 +122,14 @@ function render(config) {
   nodeEnter
     .append('text')
     .attr('class', PERSON_REPORTS_CLASS)
-    .attr('x', namePos.x)
-    .attr('y', namePos.y + nodePaddingY + heightForTitle)
+    .attr('x', nodePaddingX)
+    .attr('y', nodeHeight - nodePaddingY - 14)
     .attr('dy', '.9em')
     .style('font-size', 14)
     .style('font-weight', 500)
     .style('cursor', 'pointer')
     .style('fill', reportsColor)
-    .text(helpers.getTextForTitle)
+    .text(helpers.getTextForReports)
 
   // Person's Avatar
   nodeEnter
@@ -144,7 +146,7 @@ function render(config) {
   // Person's Department
   nodeEnter
     .append('text')
-    .attr('class', getDepartmentClass)
+    .attr('class', getDepartmentClass(PERSON_DEPARTMENT_CLASS))
     .attr('x', 34)
     .attr('y', avatarWidth + nodePaddingY * 1.2)
     .attr('dy', '.9em')
@@ -171,7 +173,12 @@ function render(config) {
   iconLink({
     svg: nodeLink,
     x: nodeWidth - 28,
-    y: nodeHeight - 28
+    y: 20
+  })
+
+  personInfo({
+    svg: nodeEnter,
+    config
   })
 
   // Transition nodes to their new position.
@@ -197,9 +204,19 @@ function render(config) {
   const link = svg.selectAll('path.link').data(links, d => d.target.id)
 
   // Wrap the title texts
-  const wrapWidth = 140
+  const titleWrapWidth = 140
 
-  svg.selectAll('text.unedited.' + PERSON_TITLE_CLASS).call(wrapText, wrapWidth)
+  svg
+    .selectAll('text.unedited.' + PERSON_TITLE_CLASS)
+    .call(wrapText, titleWrapWidth)
+
+  // Wrap the title texts
+  const infoWidth = nodeWidth - 2 * nodePaddingX
+  const infoWrapWidth = infoWidth - nodePaddingX * 2
+
+  svg
+    .selectAll('text.unedited.' + PERSON_INFO_TEXT_CLASS)
+    .call(wrapText, infoWrapWidth)
 
   // Render lines connecting nodes
   renderLines(config)
@@ -211,11 +228,13 @@ function render(config) {
   })
 }
 
-function getDepartmentClass(d) {
-  const { person } = d
-  const deptClass = person.department ? person.department.toLowerCase() : ''
+function getDepartmentClass(baseClass) {
+  return d => {
+    const { person } = d
+    const deptClass = person.department ? person.department.toLowerCase() : ''
 
-  return [PERSON_DEPARTMENT_CLASS, deptClass].join(' ')
+    return [baseClass, deptClass].join(' ')
+  }
 }
 
 module.exports = render
