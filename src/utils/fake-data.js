@@ -1,4 +1,5 @@
 const faker = require('faker')
+const _ = require('lodash')
 
 module.exports = function fakeData() {
   let count = 0
@@ -31,6 +32,7 @@ module.exports = function fakeData() {
   const data = genData({})
 
   console.log('total nodes', count)
+  console.log(data)
 
   return data
 }
@@ -39,30 +41,51 @@ function fakeId() {
   return Math.floor(Math.random() * 300000)
 }
 
+const info = [
+  {
+    text: 'Merge the towns of Eagleton and Pawnee',
+    background: '#f4f8fa',
+    color: '#00b195'
+  },
+  {
+    text: 'Convert the Sullivan Street Pit into a new city park...',
+    background: '#f4f8fa',
+    color: '#00b195'
+  },
+  {
+    text: 'Grow the Cross Division team by 3 people',
+    background: '#f4f8fa',
+    color: '#00b195'
+  },
+  {
+    text: 'Hire someone to clean the lake',
+    background: '#f4f8fa',
+    color: '#00b195'
+  },
+  {
+    text: 'Identify and merge redudancies cross-org',
+    background: '#f4f8fa',
+    color: '#00b195'
+  },
+  {
+    text: 'Install a La Croix water fountain',
+    background: '#f4f8fa',
+    color: '#00b195'
+  }
+]
+
+
 function getPerson(id, { depth, department }) {
+  const personInfo = _.shuffle(_.take(info, _.random(0, 6)))
   return {
     id,
+    link: faker.image.avatar(),
     avatar: faker.image.avatar(), // 'https://github.com/fouad.png',
     name: faker.name.firstName() + ' ' + faker.name.lastName(),
     title: depth > 0 ? faker.name.jobTitle() : 'CEO',
     department: depth > 0 ? department || getDept() : '',
-    info: [
-      {
-        text: 'Merge the towns of Eagleton and Pawnee',
-        background: '#f4f8fa',
-        color: '#00b195'
-      },
-      {
-        text: 'Convert the Sullivan Street Pit into a new city park...',
-        background: '#f4f8fa',
-        color: '#00b195'
-      },
-      {
-        text: 'Grow the Cross Division team by 3 people',
-        background: '#f4f8fa',
-        color: '#00b195'
-      }
-    ]
+    info: personInfo,
+    totalInfos: personInfo.length
   }
 }
 

@@ -24,9 +24,12 @@ function render(config) {
     lineDepthY,
     treeData,
     sourceNode,
+    showInfo,
     onPersonLinkClick,
+    onExpandInfoClick,
     PERSON_NODE_CLASS,
     PERSON_INFO_CLASS,
+    PERSON_INFO_COUNT_CLASS,
     PERSON_INFO_TEXT_CLASS,
     PERSON_LINK_CLASS,
     PERSON_NAME_CLASS,
@@ -131,6 +134,27 @@ function render(config) {
     .style('fill', reportsColor)
     .text(helpers.getTextForReports)
 
+  if (showInfo) {
+    nodeEnter
+      .append('text')
+      .attr('class', PERSON_INFO_COUNT_CLASS)
+      .attr('x', nodeWidth - 65)
+      .attr('y', nodeHeight - nodePaddingY - 14)
+      .attr('dy', '.9em')
+      .style('text-align', 'right')
+      .style('font-size', 14)
+      .style('font-weight', 500)
+      .style('cursor', 'pointer')
+      .style('fill', reportsColor)
+      .text(helpers.getTextForInfos)
+      .on('click', datum => {
+        d3.event.stopPropagation()
+        // TODO: fire link click handler
+        if (onExpandInfoClick) {
+          onExpandInfoClick(datum, d3.event)
+        }
+      })
+  }
   // Person's Avatar
   nodeEnter
     .append('image')
@@ -161,6 +185,7 @@ function render(config) {
   const nodeLink = nodeEnter
     .append('a')
     .attr('class', PERSON_LINK_CLASS)
+    .attr('target', 'noopener')
     .attr('xlink:href', d => d.person.link || 'https://lattice.com')
     .on('click', datum => {
       d3.event.stopPropagation()

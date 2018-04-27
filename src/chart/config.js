@@ -4,6 +4,7 @@ const shouldResize = true
 // Nodes
 const nodeWidth = 240
 const nodeHeight = 120
+const infoHeight = 60
 const infoNodeHeight = 320
 const nodeSpacing = 12
 const nodePaddingX = 16
@@ -16,6 +17,10 @@ const margin = {
   bottom: 20,
   left: 20
 }
+
+// Constants
+const PERSON_INFO_EMPTY_PLACEHOLDER = "No goals yet!" // Used for screenreaders / alt text
+const PERSON_INFO_EMPTY_IMAGE = 'nogoals.svg';
 
 // Lines
 const lineType = 'angle'
@@ -30,6 +35,7 @@ const reportsColor = '#92A0AD'
 
 // Classes
 const PERSON_INFO_CLASS = 'org-chart-info'
+const PERSON_INFO_CLASS_EMPTY = 'org-chart-info-empty'
 const PERSON_INFO_TEXT_CLASS = 'org-chart-info-text'
 const PERSON_NODE_CLASS = 'org-chart-node'
 const PERSON_LINK_CLASS = 'org-chart-person-link'
@@ -37,12 +43,14 @@ const PERSON_NAME_CLASS = 'org-chart-person-name'
 const PERSON_TITLE_CLASS = 'org-chart-person-title'
 const PERSON_DEPARTMENT_CLASS = 'org-chart-person-dept'
 const PERSON_REPORTS_CLASS = 'org-chart-person-reports'
+const PERSON_INFO_COUNT_CLASS = 'org-chart-person-info-count'
 
 const config = {
   margin,
   animationDuration,
   nodeWidth,
   nodeHeight,
+  infoHeight,
   infoNodeHeight,
   nodeSpacing,
   nodePaddingX,
@@ -59,12 +67,16 @@ const config = {
   shouldResize,
   PERSON_NODE_CLASS,
   PERSON_INFO_CLASS,
+  PERSON_INFO_COUNT_CLASS,
+  PERSON_INFO_CLASS_EMPTY,
   PERSON_INFO_TEXT_CLASS,
+  PERSON_INFO_EMPTY_IMAGE,
+  PERSON_INFO_EMPTY_PLACEHOLDER,
   PERSON_LINK_CLASS,
   PERSON_NAME_CLASS,
   PERSON_TITLE_CLASS,
   PERSON_DEPARTMENT_CLASS,
-  PERSON_REPORTS_CLASS
+  PERSON_REPORTS_CLASS,
 }
 
 module.exports = config
