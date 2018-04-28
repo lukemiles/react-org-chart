@@ -16,10 +16,10 @@ const props = {
   showInfo: true,
   infoName: 'goal',
   infoEmptyImage: 'no.svg',
-  onEmptyInfoClick: (node) => {
-    console.log('empty', node);
+  onEmptyInfoClick: node => {
+    console.log('empty', node)
   },
-  onExpandInfoClick: (node) => {
+  onExpandInfoClick: node => {
     console.log('expand', node)
   }
 }

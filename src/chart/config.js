@@ -18,12 +18,11 @@ const margin = {
   left: 20
 }
 
-const infoName = 'detail';
-const infoEmptyImage = 'empty.svg';
-
+const infoName = 'detail'
+const infoEmptyImage = 'empty.svg'
 
 // Constants
-const PERSON_INFO_EMPTY_PLACEHOLDER = "No info yet!" // Used for screenreaders / alt text
+const PERSON_INFO_EMPTY_PLACEHOLDER = 'No info yet!' // Used for screenreaders / alt text
 
 // Lines
 const lineType = 'angle'
@@ -80,7 +79,7 @@ const config = {
   PERSON_NAME_CLASS,
   PERSON_TITLE_CLASS,
   PERSON_DEPARTMENT_CLASS,
-  PERSON_REPORTS_CLASS,
+  PERSON_REPORTS_CLASS
 }
 
 module.exports = config

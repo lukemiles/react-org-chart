@@ -146,7 +146,7 @@ function render(config) {
       .style('font-weight', 500)
       .style('cursor', 'pointer')
       .style('fill', reportsColor)
-      .text((d) => d.person && d.person.infoMoreText || '')
+      .text(d => (d.person && d.person.infoMoreText) || '')
       .on('click', datum => {
         d3.event.stopPropagation()
         // TODO: fire link click handler

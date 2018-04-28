@@ -73,7 +73,6 @@ const info = [
   }
 ]
 
-
 function getPerson(id, { depth, department }) {
   const personInfo = _.shuffle(_.take(info, _.random(0, 6)))
   return {
@@ -85,7 +84,8 @@ function getPerson(id, { depth, department }) {
     department: depth > 0 ? department || getDept() : '',
     info: personInfo,
     totalInfos: personInfo.length,
-    infoMoreText: personInfo.length > 3 && `${personInfo.length -3 } more...` || ''
+    infoMoreText:
+      (personInfo.length > 3 && `${personInfo.length - 3} more...`) || ''
   }
 }
 
