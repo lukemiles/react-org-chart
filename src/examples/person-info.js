@@ -13,7 +13,14 @@ tree.children.forEach(d => {
 const props = {
   tree,
   lineType: 'curve',
-  showInfo: true
+  showInfo: true,
+  infoEmptyImage: 'no.svg',
+  onEmptyInfoClick: node => {
+    console.log('empty', node)
+  },
+  onExpandInfoClick: node => {
+    console.log('expand', node)
+  }
 }
 
 ReactDOM.render(React.createElement(OrgChart, props, null), root)
