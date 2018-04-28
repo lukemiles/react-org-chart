@@ -18,7 +18,6 @@ const margin = {
   left: 20
 }
 
-const infoName = 'detail'
 const infoEmptyImage = 'empty.svg'
 
 // Constants
@@ -54,7 +53,6 @@ const config = {
   nodeHeight,
   infoHeight,
   infoEmptyImage,
-  infoName,
   infoNodeHeight,
   nodeSpacing,
   nodePaddingX,
