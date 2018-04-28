@@ -14,6 +14,8 @@ const props = {
   tree,
   lineType: 'curve',
   showInfo: true,
+  infoName: 'goal',
+  infoEmptyImage: 'no.svg',
   onEmptyInfoClick: (node) => {
     console.log('empty', node);
   },

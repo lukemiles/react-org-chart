@@ -18,9 +18,12 @@ const margin = {
   left: 20
 }
 
+const infoName = 'detail';
+const infoEmptyImage = 'empty.svg';
+
+
 // Constants
-const PERSON_INFO_EMPTY_PLACEHOLDER = "No goals yet!" // Used for screenreaders / alt text
-const PERSON_INFO_EMPTY_IMAGE = 'nogoals.svg';
+const PERSON_INFO_EMPTY_PLACEHOLDER = "No info yet!" // Used for screenreaders / alt text
 
 // Lines
 const lineType = 'angle'
@@ -43,7 +46,7 @@ const PERSON_NAME_CLASS = 'org-chart-person-name'
 const PERSON_TITLE_CLASS = 'org-chart-person-title'
 const PERSON_DEPARTMENT_CLASS = 'org-chart-person-dept'
 const PERSON_REPORTS_CLASS = 'org-chart-person-reports'
-const PERSON_INFO_COUNT_CLASS = 'org-chart-person-info-count'
+const PERSON_INFO_DETAIL_CLASS = 'org-chart-person-info-detail'
 
 const config = {
   margin,
@@ -51,6 +54,8 @@ const config = {
   nodeWidth,
   nodeHeight,
   infoHeight,
+  infoEmptyImage,
+  infoName,
   infoNodeHeight,
   nodeSpacing,
   nodePaddingX,
@@ -67,10 +72,9 @@ const config = {
   shouldResize,
   PERSON_NODE_CLASS,
   PERSON_INFO_CLASS,
-  PERSON_INFO_COUNT_CLASS,
+  PERSON_INFO_DETAIL_CLASS,
   PERSON_INFO_CLASS_EMPTY,
   PERSON_INFO_TEXT_CLASS,
-  PERSON_INFO_EMPTY_IMAGE,
   PERSON_INFO_EMPTY_PLACEHOLDER,
   PERSON_LINK_CLASS,
   PERSON_NAME_CLASS,

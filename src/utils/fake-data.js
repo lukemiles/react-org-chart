@@ -32,7 +32,6 @@ module.exports = function fakeData() {
   const data = genData({})
 
   console.log('total nodes', count)
-  console.log(data)
 
   return data
 }
@@ -85,7 +84,8 @@ function getPerson(id, { depth, department }) {
     title: depth > 0 ? faker.name.jobTitle() : 'CEO',
     department: depth > 0 ? department || getDept() : '',
     info: personInfo,
-    totalInfos: personInfo.length
+    totalInfos: personInfo.length,
+    infoMoreText: personInfo.length > 3 && `${personInfo.length -3 } more...` || ''
   }
 }
 

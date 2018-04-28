@@ -1,15 +1,8 @@
 module.exports = {
   getTextForReports,
   getTextForDepartment,
-  getCursorForNode,
-  getTextForInfos
+  getCursorForNode
 }
-
-function pluralize(figure, name) {
-  const pluralEnding = figure > 1 ? 's' : ''
-  return `${figure} ${name}${pluralEnding}`
-}
-
 
 function getTextForReports(datum) {
   if (!datum.person || !datum.person.totalReports) {
@@ -19,18 +12,9 @@ function getTextForReports(datum) {
   const {
     person: { totalReports }
   } = datum
-  return pluralize(totalReports, 'report')
-}
+  const pluralEnding = totalReports > 1 ? 's' : ''
 
-function getTextForInfos(datum) {
-  if (!datum.person || !datum.person.totalInfos) {
-    return ''
-  }
-
-  const {
-    person: { totalInfos }
-  } = datum
-  return pluralize(totalInfos, 'goal')
+  return `${totalReports} report${pluralEnding}`
 }
 
 const departmentAbbrMap = {

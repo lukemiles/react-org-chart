@@ -9,10 +9,10 @@ module.exports = function personInfo({ svg, config, x = 5, y = 5 }) {
     nodePaddingY,
     infoHeight,
     nodeBorderRadius,
+    infoEmptyImage,
     PERSON_INFO_CLASS,
     PERSON_INFO_CLASS_EMPTY,
     PERSON_INFO_TEXT_CLASS,
-    PERSON_INFO_EMPTY_IMAGE,
     PERSON_INFO_EMPTY_PLACEHOLDER,
   } = config
 
@@ -76,8 +76,6 @@ module.exports = function personInfo({ svg, config, x = 5, y = 5 }) {
         `translate(${infoWidth - nodePaddingX * 1.2},${infoHeight / 2 - 4})`
     )
 
-
-
   infoNodes
     .filter(function (d) { return d && d.person && d.person.totalInfos === 0 })
     .append('rect')
@@ -92,11 +90,11 @@ module.exports = function personInfo({ svg, config, x = 5, y = 5 }) {
     .filter(function (d) { return d && d.person && d.person.totalInfos === 0 })
     .append('image')
     .style('cursor', 'pointer')
-    .attr('href', PERSON_INFO_EMPTY_IMAGE)
+    .attr('href', infoEmptyImage)
     .attr('alt', PERSON_INFO_EMPTY_PLACEHOLDER)
     .attr('width', infoWidth)
     .attr('height', infoHeight * 3)
-    .on('click', datum => {
+      .on('click', datum => {
       d3.event.stopPropagation()
       // TODO: fire link click handler
       if (onEmptyInfoClick) {
